@@ -14,6 +14,10 @@ This project showcases a minimalistic implementation of a bootloader and kernel,
 - **Files**: 
   - `kernel.asm`: Entry point for the kernel and print msg.
 
+
+## Compile Instructions
+Instructions for compiling the bootloader and kernel are available in the `compile_instructions` file located in this repository.
+
 ## Notes
 - This project serves as a foundational example and is not intended for production environments.
 - Feel free to explore, modify, and expand upon the provided codebase for learning and experimentation purposes.
