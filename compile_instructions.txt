@@ -1,0 +1,19 @@
+###
+this file is short explain to how to Compile the boot loader and hte kernel to run on qemu i386
+###
+
+nasm -f bin -o kernel.bin kernel.asm                
+        ;Compile kernel.asm to binary format (kernel.bin)
+nasm -f bin -o bootloader.bin bootloader.asm
+        ;Compile bootloader.asm to binary format (bootloader.bin)
+
+
+dd if=/dev/zero of=hard_disk.img bs=1M count=1
+        ; Create a 1.024 MB (1 MB) hard disk image (hard_disk.img) filled with zeros
+dd if=bootloader.bin of=hard_disk.img bs=512 count=1 conv=notrunc 
+        ; Copy the bootloader binary (bootloader.bin) to the first block (512 bytes) of hard_disk.img without truncating existing data
+dd if=kernel.bin of=hard_disk.img bs=512 seek=1 conv=notrunc  
+        ; Copy the kernel binary (kernel.bin) to the second block (512 bytes) of hard_disk.img without truncating existing data
+
+qemu-system-i386 hard_disk.img
+        ; This command runs the QEMU emulator, specifically for an i386 architecture system, and boots the virtual machine using the hard_disk.img file as the virtual hard disk.
